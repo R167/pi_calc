@@ -21,8 +21,7 @@ module PiCalc
     running = 0
 
     total.times do
-      ln = line_only_y
-      running += 1 if ln[:y][0].floor != ln[:y][1].floor
+      running += 1 if !line_only_y
     end
     2.0 * total / running
   end
@@ -95,6 +94,10 @@ module PiCalc
     y0 = Math.sin(angle0) * length_on_line
     y1 = Math.cos(angle1) + y0
   
-    {:y => [y0, y1], :angle => angle1}
+    y0.floor == y1.floor
   end
 end
+
+PiCalc.test 1000000
+
+
